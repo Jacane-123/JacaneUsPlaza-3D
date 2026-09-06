@@ -277,7 +277,7 @@ function animate( time ) {
   if ( miiMesh ) {
     miiMesh.position.copy( player.position );
     miiMesh.rotation.y = player.rotation.y;
-    miiMesh.position.y = player.position.y + 1;
+    miiMesh.position.y = player.position.y + 1.5;
   }
   if ( username ) {
     username.position.copy( player.position );
