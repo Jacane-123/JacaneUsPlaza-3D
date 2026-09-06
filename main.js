@@ -123,14 +123,14 @@ scene.add( floor );
 			: 'AAAAAAkAAAAAAAAAAAAAAAAAAABlAAAARAAAgAAAAAAhAAAASQAAgAcAAAADAAAABAAAAAIAAAAQAAAAEgAAAEEAAIAIAAAAAwAAAAMAAAAMAAAABAAAAAAAAAAAAAAACwAAABcAAAATAACAAAAAAAMAAAANAAAAAAAAAAAAAAAIAACABAAAAAoAAAAEAAAARAAAgAYAAAAMAAAAAAAAAAQAAAACAAAAFAAAAAAAAAARAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 		const data = parseInputToBytes(rawText);
 		if (miiMesh) {
-			player.remove(miiMesh);
+			scene.remove(miiMesh);
 		}
 		const model = new CharModel(ffl, data, FFLCharModelDescDefault, FFLShaderMaterial, renderer);
 		miiMesh = model.meshes;
 		miiMesh.position.set(0, 1, 0);
 		miiMesh.rotation.y = Math.PI;
 		miiMesh.scale.set(0.015, 0.015, 0.015);
-		player.add(miiMesh);
+		scene.add(miiMesh);
 	}
 	updateMii();
 	const updateButton = document.getElementById('updateMiiButton');
@@ -176,7 +176,7 @@ function updateUsername() {
     : 'Guest';
 
   if ( username ) {
-    player.remove( username );
+    scene.remove( username );
     if ( username.material.map ) username.material.map.dispose();
     username.material.dispose();
   }
@@ -198,7 +198,7 @@ function updateUsername() {
   username.scale.y = canvas.height * labelBaseScale;
   username.position.set( 0, 2.5, 0 );
 
-  player.add( username );
+  scene.add( username );
 }
 
 updateUsername();
@@ -273,7 +273,13 @@ const downDirection = new THREE.Vector3( 0, -1, 0 );
 
 //function animate
 function animate( time ) {
-  //run
+  // player
+  miiMesh.position.copy( player.position );
+  miiMesh.rotation.y.copy( player.rotation.y );
+  username.position.copy( player.position );
+  username.rotation.y.copy( player.rotation.y );
+	
+  // run
   let movementSpeed = 0.085;
   if( isShiftPressed ) movementSpeed = 0.135;
   
