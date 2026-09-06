@@ -79,8 +79,11 @@ minigamebox.position.set(0, 1, 1);
 scene.add( minigamebox );
 
 // player
-const loader = new OBJLoader();
+const objLoader = new OBJLoader();
 const player = await loader.loadAsync( 'public/models/miiBody_F/miiBody_F.obj' );
+const mtlLoader = new MTLLoader();
+const playerMaterial = await loader.loadAsync( 'public/models/miiBody_F/miiBody_F.mtl' );
+objLoader.setMaterials( playerMaterial );
 player.position.set(0, 1, 0);
 player.scale.set(0.003, 0.003, 0.003);
 scene.add( player );
