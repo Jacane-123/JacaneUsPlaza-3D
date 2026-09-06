@@ -84,6 +84,9 @@ const player = await loader.loadAsync( 'public/models/miiBody_F/miiBody_F.obj' )
 player.position.set(0, 1, 0);
 player.scale.set(0.003, 0.003, 0.003);
 scene.add( player );
+let miiMesh = null;
+let username = null;
+
 
 // floor
 const floorGeometry = new THREE.PlaneGeometry( 50, 50 );
@@ -107,7 +110,6 @@ scene.add( floor );
 			INITIAL_MEMORY: 67108864
 		})
 	);
-	let miiMesh = null;
 	function parseInputToBytes(text) {
 		text = text.replace(/\s+/g, '');
 		const isHex = /^[0-9a-fA-F]+$/.test(text) && text.length % 2 === 0;
@@ -127,7 +129,6 @@ scene.add( floor );
 		}
 		const model = new CharModel(ffl, data, FFLCharModelDescDefault, FFLShaderMaterial, renderer);
 		miiMesh = model.meshes;
-		miiMesh.position.set(0, 1, 0);
 		miiMesh.rotation.y = Math.PI;
 		miiMesh.scale.set(0.015, 0.015, 0.015);
 		scene.add(miiMesh);
@@ -167,7 +168,7 @@ function makeLabelCanvas( baseWidth, size, name ) {
   return ctx.canvas;
 }
 
-let username = null;
+username = null;
 
 function updateUsername() {
   const usernameInputElement = document.getElementById( 'usernameInput' );
@@ -196,7 +197,6 @@ function updateUsername() {
   username = new THREE.Sprite( labelMaterial );
   username.scale.x = canvas.width * labelBaseScale;
   username.scale.y = canvas.height * labelBaseScale;
-  username.position.set( 0, 2.5, 0 );
 
   scene.add( username );
 }
@@ -274,10 +274,15 @@ const downDirection = new THREE.Vector3( 0, -1, 0 );
 //function animate
 function animate( time ) {
   // player
-  miiMesh.position.copy( player.position );
-  miiMesh.rotation.y.copy( player.rotation.y );
-  username.position.copy( player.position );
-  username.rotation.y.copy( player.rotation.y );
+  if ( miiMesh ) {
+    miiMesh.position.copy( player.position );
+    miiMesh.rotation.y = player.rotation.y;
+    miiMesh.position.y = player.position.y + 1;
+  }
+  if ( username ) {
+    username.position.copy( player.position );
+    username.position.y = player.position.y + 2.5;
+  }
 	
   // run
   let movementSpeed = 0.085;
