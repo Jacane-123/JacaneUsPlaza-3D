@@ -64,6 +64,13 @@ for ( let i = 0; i < 20; i++ ) {
   dustParticles.push( dust );
 }
 
+// light for obj models (test)
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.8); // Luce diffusa globale
+scene.add(ambientLight);
+const dirLight = new THREE.DirectionalLight(0xffffff, 1.0); // Luce diretta (es. Sole)
+dirLight.position.set(5, 10, 7.5);
+scene.add(dirLight);
+
 
 
 //Objects
