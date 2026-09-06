@@ -74,8 +74,8 @@ scene.add(dirLight);
 
 
 //Objects
-// minigame box placeholder
-const minigameboxGeometry = new THREE.BoxGeometry( 0.5, 0.5, 0.15 );
+// minigame box placeholder DISABLED SINCE I DONT NEED IT FOR NOW
+/** const minigameboxGeometry = new THREE.BoxGeometry( 0.5, 0.5, 0.15 );
 const minigameboxTexture = new THREE.TextureLoader().load( 'public/textures/MinigameBoxes/BoxGlassBase.png' );
 const minigameiconTexture = new THREE.TextureLoader().load( 'public/textures/MinigameBoxes/GameIcon.png' );
 const minigameboxMaterial = new THREE.MeshBasicMaterial( { 
@@ -83,7 +83,7 @@ const minigameboxMaterial = new THREE.MeshBasicMaterial( {
   transparent: true } );
 const minigamebox = new THREE.Mesh( minigameboxGeometry, minigameboxMaterial );
 minigamebox.position.set(0, 1, 1);
-scene.add( minigamebox );
+scene.add( minigamebox ); */
 
 // player
 const objLoader = new OBJLoader();
@@ -140,7 +140,7 @@ scene.add( floor );
 		const model = new CharModel(ffl, data, FFLCharModelDescDefault, FFLShaderMaterial, renderer);
 		miiMesh = model.meshes;
 		miiMesh.rotation.y = Math.PI;
-		miiMesh.scale.set(0.015, 0.015, 0.015);
+		miiMesh.scale.set(0.02, 0.02, 0.02);
 		scene.add(miiMesh);
 	}
 	updateMii();
