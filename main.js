@@ -87,10 +87,10 @@ scene.add( minigamebox ); */
 
 // player
 const objLoader = new OBJLoader();
-const player = await objLoader.loadAsync( 'public/models/miiBody_F/miiBody_F.obj' );
 const mtlLoader = new MTLLoader();
 const playerMaterial = await mtlLoader.loadAsync( 'public/models/miiBody_F/miiBody_F.mtl' );
 objLoader.setMaterials( playerMaterial );
+const player = await objLoader.loadAsync( 'public/models/miiBody_F/miiBody_F.obj' );
 player.position.set(0, 1, 0);
 player.scale.set(0.003, 0.003, 0.003);
 scene.add( player );
@@ -140,7 +140,7 @@ scene.add( floor );
 		const model = new CharModel(ffl, data, FFLCharModelDescDefault, FFLShaderMaterial, renderer);
 		miiMesh = model.meshes;
 		miiMesh.rotation.y = Math.PI;
-		miiMesh.scale.set(0.02, 0.02, 0.02);
+		miiMesh.scale.set(0.017, 0.017, 0.017);
 		scene.add(miiMesh);
 	}
 	updateMii();
@@ -291,7 +291,7 @@ function animate( time ) {
   }
   if ( username ) {
     username.position.copy( player.position );
-    username.position.y = player.position.y + 2.5;
+    username.position.y = player.position.y + 2.65;
   }
 	
   // run
