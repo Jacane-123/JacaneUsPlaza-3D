@@ -282,19 +282,7 @@ const downDirection = new THREE.Vector3( 0, -1, 0 );
 
 
 //function animate
-function animate( time ) {
-  // player
-  if ( miiMesh ) {
-    miiMesh.position.copy( player.position );
-    miiMesh.rotation.copy(player.rotation);
-    miiMesh.rotateY(Math.PI);
-    miiMesh.position.y = player.position.y + 1.35;
-  }
-  if ( username ) {
-    username.position.copy( player.position );
-    username.position.y = player.position.y + 2.65;
-  }
-	
+function animate( time ) {	
   // run
   let movementSpeed = 0.085;
   if( isShiftPressed ) movementSpeed = 0.135;
@@ -344,6 +332,18 @@ function animate( time ) {
   if ( isSpacePressed && isOnGround )
   {
     playerVelocityY = + jumpForce;
+  }
+
+    // player
+  if ( miiMesh ) {
+    miiMesh.position.copy( player.position );
+    miiMesh.rotation.copy(player.rotation);
+    miiMesh.rotateY(Math.PI);
+    miiMesh.position.y = player.position.y + 1.35;
+  }
+  if ( username ) {
+    username.position.copy( player.position );
+    username.position.y = player.position.y + 2.65;
   }
   
   // camera
