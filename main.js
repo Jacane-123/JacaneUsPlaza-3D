@@ -286,7 +286,7 @@ function animate( time ) {
   // player
   if ( miiMesh ) {
     miiMesh.position.copy( player.position );
-    miiMesh.rotation.y = player.rotation.y + 90;
+    miiMesh.rotation.y = player.rotation.y + Math.PI;
     miiMesh.position.y = player.position.y + 1.35;
   }
   if ( username ) {
